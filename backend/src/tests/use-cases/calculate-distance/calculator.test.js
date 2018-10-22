@@ -1,7 +1,7 @@
 const test = require('tape')
 const rewire = require('rewire')
 
-test('should calculate the distance from office to munich', assert => {
+test('should calculate the distance from the office to munich', assert => {
     assert.plan(1)
     const msg = 'shows distance in km'
     const calculate = rewire('../../../use-cases/calculate-distance/calculator')

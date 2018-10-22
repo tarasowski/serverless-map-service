@@ -3,7 +3,7 @@ const AWS = require('aws-sdk')
 const storage = new AWS.S3({ region: process.env.BUCKET_REGION })
 const BUCKET_NAME = process.env.BUCKET_NAME
 
-test('should create a s3 bucket', async assert => {
+test('should create an s3 bucket', async assert => {
     assert.plan(1)
     const msg = 'bucket created'
     let actual
@@ -35,7 +35,7 @@ test('should upload a json file to s3', async assert => {
 
 })
 
-test('should retrieve metadata from an object and calculate distance', async assert => {
+test('should retrieve metadata from an object and calculate the distance', async assert => {
     assert.plan(1)
     const msg = 'calculate distance'
     const apiCall = require('../../../use-cases/calculate-distance/adapter-apig').handler
@@ -73,7 +73,7 @@ test('should delete an object from s3', async assert => {
 })
 
 
-test('should delete a s3 bucket', async assert => {
+test('should delete an s3 bucket', async assert => {
     assert.plan(1)
     const msg = 'bucket deleted'
     let actual

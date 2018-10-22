@@ -4,7 +4,7 @@ const storage = new AWS.S3({ region: process.env.BUCKET_REGION })
 const BUCKET_NAME = process.env.BUCKET_NAME
 
 
-test('should create a s3 bucket', async assert => {
+test('should create an s3 bucket', async assert => {
     assert.plan(1)
     const msg = 'bucket created'
     let actual
@@ -20,7 +20,7 @@ test('should create a s3 bucket', async assert => {
     assert.same(actual, expected, msg)
 })
 
-test('should upload a json file to s3', async assert => {
+test('should upload an json file to s3', async assert => {
     assert.plan(1)
     const msg = 'file uploaded'
     const apiCall = require('../../../use-cases/upload-location/adapter-apig').handler
@@ -55,7 +55,7 @@ test('should delete an object from s3', async assert => {
 })
 
 
-test('should delete a s3 bucket', async assert => {
+test('should delete an s3 bucket', async assert => {
     assert.plan(1)
     const msg = 'bucket deleted'
     let actual
