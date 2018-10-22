@@ -17,10 +17,9 @@
   "license": "ISC",
   "devDependencies": {
     "aws-sdk": "^2.339.0",
+    "rewire": "^4.0.1",
     "serverless-scotty": "^0.1.3",
     "tape": "^4.9.1"
   },
-  "dependencies": {
-    "rewire": "^4.0.1"
-  }
+  "dependencies": {}
 }
