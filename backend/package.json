@@ -8,7 +8,7 @@
     "folder": "rm -rf build && mkdir build",
     "bucket": "aws s3api create-bucket --bucket interview-map-location-service --region eu-west-1 --create-bucket-configuration LocationConstraint=eu-west-1",
     "package": "aws cloudformation package --template-file template.yaml --output-template-file build/output.yaml --s3-bucket interview-map-location-service",
-    "deploy": "aws cloudformation deploy --template-file build/output.yaml --stack-name interview-map-location-service --capabilities CAPABILITY_NAMED_IAM",
+    "deploy": "aws cloudformation deploy --template-file build/output.yaml --stack-name interview-map-location-service-new --capabilities CAPABILITY_NAMED_IAM",
     "qd": "npm run folder && npm run package && npm run deploy",
     "scotty": "BUCKET_NAME=interview-map-location-service REGION=eu-west-1 node ./node_modules/.bin/scotty"
   },

@@ -23,7 +23,7 @@ Parameters:
 Resources:
   CalculateDistance:
     Properties:
-      CodeUri: s3://interview-map-location-service/18bbcde626c68a7a2cc70c86f90d6da0
+      CodeUri: s3://interview-map-location-service/89f738e418727017389f28a5f9dd1f0b
       Environment:
         Variables:
           STARTING_LAT: 52.502931
@@ -37,15 +37,13 @@ Resources:
       FunctionName: interview-CalculateDistance
       Handler: adapter-apig.handler
       Policies:
-      - Statement:
-        - Action: '*'
-          Effect: Allow
-          Resource: '*'
-        Version: 2012-10-17
+      - S3CrudPolicy:
+          BucketName:
+            Ref: LocationStorage
     Type: AWS::Serverless::Function
   ListLocations:
     Properties:
-      CodeUri: s3://interview-map-location-service/c2854c636c6ced1efff29aa4e476aee2
+      CodeUri: s3://interview-map-location-service/5f04fb2d1444ffbb66011c1912ddf279
       Events:
         Api:
           Properties:
@@ -55,17 +53,15 @@ Resources:
       FunctionName: interview-ListLocations
       Handler: adapter-apig.handler
       Policies:
-      - Statement:
-        - Action: '*'
-          Effect: Allow
-          Resource: '*'
-        Version: 2012-10-17
+      - S3CrudPolicy:
+          BucketName:
+            Ref: LocationStorage
     Type: AWS::Serverless::Function
   LocationStorage:
     Type: AWS::S3::Bucket
   UploadLocation:
     Properties:
-      CodeUri: s3://interview-map-location-service/628c49ab442f6b04130b5d25b2eaaa18
+      CodeUri: s3://interview-map-location-service/0d5f3bad0f5ff6b220ea5955292a8646
       Events:
         Api:
           Properties:

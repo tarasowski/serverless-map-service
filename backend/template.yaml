@@ -36,16 +36,9 @@ Resources:
       Handler: adapter-apig.handler
       CodeUri: src/use-cases/list-locations
       Policies:
-        - Version: 2012-10-17
-          Statement:
-            - Effect: Allow
-              Action: '*' 
-                # - s3:GetObject
-              Resource: '*'
-                # Fn::Join: 
-                #   - ''
-                #   - - Fn::GetAtt: [LocationStorage, Arn]
-                #     - '/*'
+        - S3CrudPolicy:
+            BucketName: 
+              Ref: LocationStorage
       Events:
         Api:
           Type: Api
@@ -84,16 +77,9 @@ Resources:
       Handler: adapter-apig.handler
       CodeUri: src/use-cases/calculate-distance
       Policies:
-        - Version: 2012-10-17
-          Statement:
-            - Effect: Allow
-              Action: '*'
-                # - s3:HeadBucket
-              Resource: '*'
-                # Fn::Join: 
-                  # - ''
-                  # - - Fn::GetAtt: [LocationStorage, Arn]
-                  #   - '/*'
+        - S3CrudPolicy:
+            BucketName: 
+              Ref: LocationStorage
       Environment:
         Variables:
           STARTING_LAT: 52.502931
