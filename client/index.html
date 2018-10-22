@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Upload Your Location</title>
+
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="content">
+    <div>
+        <h1>Navigation</h1>
+        <ul>
+            <li><a href="./index.html">Upload Locations</a></li>
+            <li><a href="./list.html">List Locations</a></li>
+            <li><a href="./distance.html">Locations Distance</a></li>
+
+        </ul>
+
+    </div>
+    <div>
+        <h1>Upload Your Location</h1>
+        <div>
+            <input type="file" value="Upload" id="input" class="upload" accept="application/json" onchange="handleFiles(event)" />
+            <br><br>
+            <output id="list"></output>
+        </div>
+    </div>
+    <script>
+        const handleFiles = (event) => {
+            const file = event.target.files[0]
+            console.log(file)
+            const reader = new FileReader()
+            reader.onload = (event) => {
+                const name = file.name
+                const content = JSON.parse(event.target.result)
+                const url = 'https://lol18a4qz6.execute-api.eu-west-1.amazonaws.com/Prod/locations'
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    body: JSON.stringify({
+                        name,
+                        content
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('list').innerHTML = data.message
+                    })
+                    .catch(err => console.log(err))
+            }
+            reader.readAsText(file)
+        }
+    </script>
+</body>
+
+</html>

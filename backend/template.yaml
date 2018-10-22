@@ -1,0 +1,107 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: Map location service
+
+Parameters:
+  BucketRegion:
+    Type: String
+    Default: eu-west-1
+
+
+Globals:
+  Function:
+    Runtime: nodejs8.10
+    Timeout: 3
+    MemorySize: 256
+    Environment:
+        Variables:
+          BUCKET_NAME:
+            Ref: LocationStorage
+          BUCKET_REGION:
+            Ref: BucketRegion
+  Api:
+    Cors:
+      AllowMethods: "'*'"
+      AllowHeaders: "'*'"
+      AllowOrigin: "'*'"
+
+Resources:
+  LocationStorage:
+    Type: AWS::S3::Bucket
+
+  ListLocations:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: interview-ListLocations
+      Handler: adapter-apig.handler
+      CodeUri: src/use-cases/list-locations
+      Policies:
+        - Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Action: '*' 
+                # - s3:GetObject
+              Resource: '*'
+                # Fn::Join: 
+                #   - ''
+                #   - - Fn::GetAtt: [LocationStorage, Arn]
+                #     - '/*'
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /locations
+            Method: GET
+
+  UploadLocation:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: interview-UploadLocation
+      Handler: adapter-apig.handler
+      CodeUri: src/use-cases/upload-location
+      Policies:
+        - Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Action:
+                - s3:PutObject
+              Resource: 
+                Fn::Join: 
+                  - ''
+                  - - Fn::GetAtt: [LocationStorage, Arn]
+                    - '/*'
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /locations
+            Method: POST
+
+  CalculateDistance:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: interview-CalculateDistance
+      Handler: adapter-apig.handler
+      CodeUri: src/use-cases/calculate-distance
+      Policies:
+        - Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Action: '*'
+                # - s3:HeadBucket
+              Resource: '*'
+                # Fn::Join: 
+                  # - ''
+                  # - - Fn::GetAtt: [LocationStorage, Arn]
+                  #   - '/*'
+      Environment:
+        Variables:
+          STARTING_LAT: 52.502931
+          STARTING_LNG: 13.408249
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /distance/{location}
+            Method: GET
+    

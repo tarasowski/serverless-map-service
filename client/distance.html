@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Upload Your Location</title>
+
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="content">
+    <div>
+        <h1>Navigation</h1>
+        <ul>
+            <li><a href="./index.html">Upload Locations</a></li>
+            <li><a href="./list.html">List Locations</a></li>
+            <li><a href="./distance.html">Locations Distance</a></li>
+        </ul>
+
+    </div>
+    <div>
+        <h1>Get Distance To Your Location</h1>
+        Location:<br>
+        <input type="text" name="location" id="location"><br>
+        <br>
+        <button onclick="getDistance()">Get Distance</button>
+        <br>
+        <br>
+        <output id="list"></output>
+        <div>
+        </div>
+    </div>
+    <script>
+        const getDistance = () => {
+            const location = document.getElementById("location").value
+            const url = `https://lol18a4qz6.execute-api.eu-west-1.amazonaws.com/Prod/distance/${location}`
+            fetch(url, {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error === 400) {
+                        document.getElementById('list').innerHTML = `${data.message}`
+                    } else {
+                        document.getElementById('list').innerHTML = `The distance from Berlin office to ${data.location} is exactly ${data.distance} km`
+                    }
+
+
+                })
+                .catch(err => console.log(err))
+        }
+    </script>
+</body>
+
+</html>

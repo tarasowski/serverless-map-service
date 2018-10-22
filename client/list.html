@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Upload Your Location</title>
+
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="content" onload="listLocations()">
+    <div>
+        <h1>Navigation</h1>
+        <ul>
+            <li><a href="./index.html">Upload Locations</a></li>
+            <li><a href="./list.html">List Locations</a></li>
+            <li><a href="./distance.html">Locations Distance</a></li>
+        </ul>
+
+    </div>
+    <div>
+        <h1>Your Locations</h1>
+        <output id="list"></output>
+        <div>
+        </div>
+    </div>
+    <script>
+        const listLocations = () => {
+            const url = 'https://lol18a4qz6.execute-api.eu-west-1.amazonaws.com/Prod/locations'
+            fetch(url, {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const output = []
+                    data.forEach(element => {
+                        output.push('<li>', element, '</li>')
+                    })
+                    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>'
+
+                })
+                .catch(err => console.log(err))
+        }
+    </script>
+</body>
+
+</html>

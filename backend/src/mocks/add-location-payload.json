@@ -1,0 +1,130 @@
+{
+    "resource": "/locations",
+    "path": "/locations",
+    "httpMethod": "POST",
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8,de;q=0.7",
+        "cache-control": "no-cache",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "DE",
+        "content-type": "application/json; charset=utf-8",
+        "Host": "lol18a4qz6.execute-api.eu-west-1.amazonaws.com",
+        "origin": "http://interview-map-service-website.s3-website-eu-west-1.amazonaws.com",
+        "pragma": "no-cache",
+        "Referer": "http://interview-map-service-website.s3-website-eu-west-1.amazonaws.com/index.html",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36",
+        "Via": "2.0 f6c241b75ae7d21ac836339454ab90b8.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "FpQ-1o6k3ghU_3pxpvSGJ7Pk4mps2pyyL8zWFvv6krNCC_SY9qP32Q==",
+        "X-Amzn-Trace-Id": "Root=1-5bcdeffa-62b4ea130239fb604ed6376c",
+        "X-Forwarded-For": "95.91.242.25, 70.132.1.78",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "multiValueHeaders": {
+        "Accept": [
+            "*/*"
+        ],
+        "Accept-Encoding": [
+            "gzip, deflate, br"
+        ],
+        "Accept-Language": [
+            "en-GB,en-US;q=0.9,en;q=0.8,de;q=0.7"
+        ],
+        "cache-control": [
+            "no-cache"
+        ],
+        "CloudFront-Forwarded-Proto": [
+            "https"
+        ],
+        "CloudFront-Is-Desktop-Viewer": [
+            "true"
+        ],
+        "CloudFront-Is-Mobile-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-SmartTV-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-Tablet-Viewer": [
+            "false"
+        ],
+        "CloudFront-Viewer-Country": [
+            "DE"
+        ],
+        "content-type": [
+            "application/json; charset=utf-8"
+        ],
+        "Host": [
+            "lol18a4qz6.execute-api.eu-west-1.amazonaws.com"
+        ],
+        "origin": [
+            "http://interview-map-service-website.s3-website-eu-west-1.amazonaws.com"
+        ],
+        "pragma": [
+            "no-cache"
+        ],
+        "Referer": [
+            "http://interview-map-service-website.s3-website-eu-west-1.amazonaws.com/index.html"
+        ],
+        "User-Agent": [
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
+        ],
+        "Via": [
+            "2.0 f6c241b75ae7d21ac836339454ab90b8.cloudfront.net (CloudFront)"
+        ],
+        "X-Amz-Cf-Id": [
+            "FpQ-1o6k3ghU_3pxpvSGJ7Pk4mps2pyyL8zWFvv6krNCC_SY9qP32Q=="
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-5bcdeffa-62b4ea130239fb604ed6376c"
+        ],
+        "X-Forwarded-For": [
+            "95.91.242.25, 70.132.1.78"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "bl25ei",
+        "resourcePath": "/locations",
+        "httpMethod": "POST",
+        "extendedRequestId": "PLJvKFRYjoEFtvA=",
+        "requestTime": "22/Oct/2018:15:42:50 +0000",
+        "path": "/Prod/locations",
+        "accountId": "012276481874",
+        "protocol": "HTTP/1.1",
+        "stage": "Prod",
+        "requestTimeEpoch": 1540222970673,
+        "requestId": "21ec6b06-d611-11e8-802b-eddab13f15b0",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "95.91.242.25",
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36",
+            "user": null
+        },
+        "apiId": "lol18a4qz6"
+    },
+    "body": "{\"name\":\"Muenchen.json\",\"content\":{\"lat\":48.137154,\"lng\":11.576124}}",
+    "isBase64Encoded": false
+}

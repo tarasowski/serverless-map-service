@@ -1,0 +1,91 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Map location service
+Globals:
+  Api:
+    Cors:
+      AllowHeaders: '''*'''
+      AllowMethods: '''*'''
+      AllowOrigin: '''*'''
+  Function:
+    Environment:
+      Variables:
+        BUCKET_NAME:
+          Ref: LocationStorage
+        BUCKET_REGION:
+          Ref: BucketRegion
+    MemorySize: 256
+    Runtime: nodejs8.10
+    Timeout: 3
+Parameters:
+  BucketRegion:
+    Default: eu-west-1
+    Type: String
+Resources:
+  CalculateDistance:
+    Properties:
+      CodeUri: s3://interview-map-location-service/18bbcde626c68a7a2cc70c86f90d6da0
+      Environment:
+        Variables:
+          STARTING_LAT: 52.502931
+          STARTING_LNG: 13.408249
+      Events:
+        Api:
+          Properties:
+            Method: GET
+            Path: /distance/{location}
+          Type: Api
+      FunctionName: interview-CalculateDistance
+      Handler: adapter-apig.handler
+      Policies:
+      - Statement:
+        - Action: '*'
+          Effect: Allow
+          Resource: '*'
+        Version: 2012-10-17
+    Type: AWS::Serverless::Function
+  ListLocations:
+    Properties:
+      CodeUri: s3://interview-map-location-service/c2854c636c6ced1efff29aa4e476aee2
+      Events:
+        Api:
+          Properties:
+            Method: GET
+            Path: /locations
+          Type: Api
+      FunctionName: interview-ListLocations
+      Handler: adapter-apig.handler
+      Policies:
+      - Statement:
+        - Action: '*'
+          Effect: Allow
+          Resource: '*'
+        Version: 2012-10-17
+    Type: AWS::Serverless::Function
+  LocationStorage:
+    Type: AWS::S3::Bucket
+  UploadLocation:
+    Properties:
+      CodeUri: s3://interview-map-location-service/628c49ab442f6b04130b5d25b2eaaa18
+      Events:
+        Api:
+          Properties:
+            Method: POST
+            Path: /locations
+          Type: Api
+      FunctionName: interview-UploadLocation
+      Handler: adapter-apig.handler
+      Policies:
+      - Statement:
+        - Action:
+          - s3:PutObject
+          Effect: Allow
+          Resource:
+            Fn::Join:
+            - ''
+            - - Fn::GetAtt:
+                - LocationStorage
+                - Arn
+              - /*
+        Version: 2012-10-17
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
