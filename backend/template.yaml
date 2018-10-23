@@ -88,6 +88,6 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /distance/{location}
+            Path: /locations/{location}
             Method: GET
     
