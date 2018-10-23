@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "BUCKET_NAME=interview-map-endpoint-christian BUCKET_REGION=eu-west-1 STARTING_LAT=52.502931 STARTING_LNG=13.408249 tape 'src/tests/**/**/*.test.js'",
+    "test": "BUCKET_NAME=interview-map-endpoint-christian BUCKET_REGION=eu-west-1 STARTING_LAT=52.502931 STARTING_LNG=13.408249 tape 'src/tests/**/**/*unit.test.js'",
+    "test:int": "BUCKET_NAME=interview-map-endpoint-christian BUCKET_REGION=eu-west-1 STARTING_LAT=52.502931 STARTING_LNG=13.408249 tape 'src/tests/**/**/*int.test.js'",
     "folder": "rm -rf build && mkdir build",
     "bucket": "aws s3api create-bucket --bucket interview-map-location-service --region eu-west-1 --create-bucket-configuration LocationConstraint=eu-west-1",
     "package": "aws cloudformation package --template-file template.yaml --output-template-file build/output.yaml --s3-bucket interview-map-location-service",
